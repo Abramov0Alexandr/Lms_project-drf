@@ -1,5 +1,5 @@
 def course_upload_path(model, file) -> str:
-    return f"course/{model.pk}/{file}"
+    return f"course/{model.title}/{file}"
 
 
 def lesson_upload_path(model, file) -> str:
