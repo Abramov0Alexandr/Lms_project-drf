@@ -3,6 +3,9 @@ from learning_hub.models import Course
 
 
 class CourseSerializer(serializers.ModelSerializer):
+
+    lessons_count = serializers.IntegerField(source='lesson_set.all.count', read_only=True)
+
     class Meta:
         model = Course
         permission_classes = [permissions.AllowAny]
