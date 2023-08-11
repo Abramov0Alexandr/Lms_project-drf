@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework',
+    'custom_user.apps.CustomUserConfig',
+    'learning_hub.apps.LearningHubConfig',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +136,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -140,4 +148,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Substituting a custom User model
 # https://docs.djangoproject.com/en/4.2/topics/auth/customizing/
 
-# AUTH_USER_MODEL = 'custom_user.CustomUser'
+AUTH_USER_MODEL = 'custom_user.CustomUser'
