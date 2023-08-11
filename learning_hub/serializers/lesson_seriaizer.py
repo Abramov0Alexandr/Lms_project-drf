@@ -1,12 +1,5 @@
 from rest_framework import serializers, permissions
-from .models import Course, Lesson
-
-
-class CourseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        permission_classes = [permissions.AllowAny]
-        fields = '__all__'
+from learning_hub.models import Lesson
 
 
 class LessonSerializer(serializers.ModelSerializer):
