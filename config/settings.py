@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'custom_user.apps.CustomUserConfig',
     'learning_hub.apps.LearningHubConfig',
+    'payments.apps.PaymentsConfig',
 ]
 
 MIDDLEWARE = [
