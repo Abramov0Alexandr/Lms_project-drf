@@ -40,11 +40,24 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_filters',
     'rest_framework',
     'custom_user.apps.CustomUserConfig',
     'learning_hub.apps.LearningHubConfig',
     'payments.apps.PaymentsConfig',
 ]
+
+
+# Integration with Django Rest Framework is provided through a DRF-specific FilterSet and a filter backend.
+# These may be found in the rest_framework sub-package.
+# https://django-filter.readthedocs.io/en/stable/guide/rest_framework.html
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
