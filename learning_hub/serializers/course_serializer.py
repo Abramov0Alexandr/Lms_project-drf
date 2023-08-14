@@ -5,10 +5,14 @@ from learning_hub.serializers.lesson_seriaizer import LessonSerializer
 
 class CourseSerializer(serializers.ModelSerializer):
 
-    lessons_count = serializers.IntegerField(source='course.all.count', read_only=True)
+    lessons_count = serializers.SerializerMethodField()
     lessons_info = LessonSerializer(source='course', many=True)
 
     class Meta:
         model = Course
         permission_classes = [permissions.AllowAny]
         fields = '__all__'
+
+    @staticmethod
+    def get_lessons_count(instance):
+        return instance.course.all().count()
