@@ -6,7 +6,7 @@ from learning_hub.serializers.lesson_seriaizer import LessonSerializer
 class CourseSerializer(serializers.ModelSerializer):
 
     lessons_count = serializers.SerializerMethodField()
-    lessons_info = LessonSerializer(source='course', many=True)
+    lessons_info = LessonSerializer(source='course', many=True, read_only=True)  #: Теперь, при создании через POST, это поле не будет требоваться к указанию (read_only=True)
 
     class Meta:
         model = Course
