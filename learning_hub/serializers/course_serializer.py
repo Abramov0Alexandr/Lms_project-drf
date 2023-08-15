@@ -1,6 +1,6 @@
 from rest_framework import serializers, permissions
 from learning_hub.models import Course
-from learning_hub.serializers.lesson_seriaizer import LessonSerializer
+from learning_hub.serializers.lesson_serializer import LessonSerializer
 
 
 class CourseSerializer(serializers.ModelSerializer):
