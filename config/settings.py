@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'django_filters',
     'rest_framework',
+    'rest_framework_simplejwt',
     'custom_user.apps.CustomUserConfig',
     'learning_hub.apps.LearningHubConfig',
     'payments.apps.PaymentsConfig',
@@ -52,10 +53,16 @@ INSTALLED_APPS = [
 # These may be found in the rest_framework sub-package.
 # https://django-filter.readthedocs.io/en/stable/guide/rest_framework.html
 
+# Project configuration for rest_framework_simplejwt
+# https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#project-configuration
+
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
 
 
