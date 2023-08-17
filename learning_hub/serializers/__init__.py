@@ -1,2 +1,3 @@
 from .course_serializer import CourseSerializer
 from .lesson_serializer import LessonSerializer
+from .custom_obtain_serializer import MyTokenObtainPairSerializer
