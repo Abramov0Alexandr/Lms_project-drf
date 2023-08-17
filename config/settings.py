@@ -56,13 +56,20 @@ INSTALLED_APPS = [
 # Project configuration for rest_framework_simplejwt
 # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#project-configuration
 
+# Setting the permission policy
+# https://www.django-rest-framework.org/api-guide/permissions/#setting-the-permission-policy
+
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
 }
 
 

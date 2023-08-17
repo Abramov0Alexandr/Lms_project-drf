@@ -5,6 +5,7 @@ from learning_hub.models import Course
 from learning_hub.serializers import CourseSerializer
 
 
+# ToDo: Закрыть эндпоинт для данного контроллера не авторизованным пользователям
 class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
