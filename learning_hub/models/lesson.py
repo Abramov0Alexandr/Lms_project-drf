@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from learning_hub.services import lesson_upload_path
 
@@ -11,6 +12,7 @@ class Lesson(models.Model):
     preview = models.ImageField(upload_to=lesson_upload_path, verbose_name='Превью урока', **NULLABLE)
     video_link = models.URLField(verbose_name='Ссылка на видео', **NULLABLE)
     course = models.ForeignKey('Course', on_delete=models.CASCADE, verbose_name='Курс', related_name='course')
+    lesson_owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name='Владелец урока')
 
     def __str__(self):
         return f"{self.title} {self.course}"
