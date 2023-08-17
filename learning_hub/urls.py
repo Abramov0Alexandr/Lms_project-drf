@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .apps import LearningHubConfig
-from .views import course_views, lesson_views
+from .views import course_views, lesson_views, custom_obtain_token_views
 
 
 app_name = LearningHubConfig.name
@@ -19,7 +19,7 @@ urlpatterns = [
     path('lesson/update/<int:pk>', lesson_views.LessonUpdateApiView.as_view(), name='lesson_update'),
     path('lesson/delete/<int:pk>', lesson_views.LessonDestroyApiView.as_view(), name='lesson_delete'),
 
-    path('course/token/', course_views.CourseViewSet.as_view({'post': 'get_token'}), name='course_token_obtain_pair'),
+    path('course/token/', custom_obtain_token_views.MyObtainTokenPairView.as_view(), name='course_token_obtain_pair'),
     path('lesson/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('lesson/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
