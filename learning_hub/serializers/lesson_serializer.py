@@ -8,9 +8,15 @@ class LessonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Lesson
-        permission_classes = [permissions.AllowAny]
         fields = '__all__'
 
     @staticmethod
     def get_course_title(instance):
         return instance.course.title
+
+
+class PreviewLessonSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Lesson
+        fields = ('pk', 'title', 'description',)
