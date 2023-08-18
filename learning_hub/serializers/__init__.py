@@ -1,3 +1,3 @@
-from .course_serializer import CourseSerializer
-from .lesson_serializer import LessonSerializer
+from .course_serializer import CourseListSerializer, CourseDetailSerializer
+from .lesson_serializer import LessonSerializer, PreviewLessonSerializer
 from .custom_obtain_serializer import MyTokenObtainPairSerializer
