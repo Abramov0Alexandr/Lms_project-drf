@@ -14,10 +14,10 @@ urlpatterns = [
 
     path('lesson/', lesson_views.LessonListApiView.as_view(), name='lesson_list'),
 
-    path('lesson/create', lesson_views.LessonCreateApiView.as_view(), name='lesson_create'),
-    path('lesson/detail/<int:pk>', lesson_views.LessonRetrieveApiView.as_view(), name='lesson_detail'),
-    path('lesson/update/<int:pk>', lesson_views.LessonUpdateApiView.as_view(), name='lesson_update'),
-    path('lesson/delete/<int:pk>', lesson_views.LessonDestroyApiView.as_view(), name='lesson_delete'),
+    path('lesson/create/', lesson_views.LessonCreateApiView.as_view(), name='lesson_create'),
+    path('lesson/detail/<int:pk>/', lesson_views.LessonRetrieveApiView.as_view(), name='lesson_detail'),
+    path('lesson/update/<int:pk>/', lesson_views.LessonUpdateApiView.as_view(), name='lesson_update'),
+    path('lesson/delete/<int:pk>/', lesson_views.LessonDestroyApiView.as_view(), name='lesson_delete'),
 
     path('course/token/', custom_obtain_token_views.MyObtainTokenPairView.as_view(), name='course_token_obtain_pair'),
     path('lesson/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
