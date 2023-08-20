@@ -11,6 +11,11 @@ class LessonListApiView(generics.ListAPIView):
 class LessonCreateApiView(generics.CreateAPIView):
     serializer_class = LessonSerializer
 
+    def perform_create(self, serializer):
+        new_lesson = serializer.save(lesson_owner=self.request.user)
+        new_lesson.lesson_owner = self.request.user
+        new_lesson.save()
+
 
 class LessonRetrieveApiView(generics.RetrieveAPIView):
     serializer_class = LessonSerializer
