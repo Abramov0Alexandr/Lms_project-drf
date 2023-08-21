@@ -9,6 +9,11 @@ class CourseViewSet(mixins.ListModelMixin,
     serializer_class = CourseListSerializer
     queryset = Course.objects.all()
 
+    def perform_create(self, serializer):
+        new_course = serializer.save(course_owner=self.request.user)
+        new_course.course_owner = self.request.user
+        new_course.save()
+
 
 class CourseDetailViewSet(mixins.RetrieveModelMixin,
                           viewsets.GenericViewSet):

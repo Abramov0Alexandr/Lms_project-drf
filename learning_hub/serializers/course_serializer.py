@@ -7,6 +7,7 @@ class CourseListSerializer(serializers.ModelSerializer):
 
     lessons_count = serializers.SerializerMethodField()
     lessons_info = PreviewLessonSerializer(source='course', many=True, read_only=True)  #: Теперь, при создании через POST, это поле не будет требоваться к указанию (read_only=True)
+    course_owner = serializers.CharField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Course
