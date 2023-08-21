@@ -14,3 +14,10 @@ class LessonSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_course_title(instance):
         return instance.course.title
+
+
+class PreviewLessonSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Lesson
+        fields = ('pk', 'title', 'description',)

@@ -9,6 +9,7 @@ app_name = LearningHubConfig.name
 
 router = routers.DefaultRouter()
 router.register(r'course', course_views.CourseViewSet, basename='course')
+router.register(r'course/detail', course_views.CourseDetailViewSet, basename='course_detail')
 
 urlpatterns = [
 
