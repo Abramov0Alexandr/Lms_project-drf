@@ -1,10 +1,13 @@
 from rest_framework import viewsets, mixins
+from rest_framework.response import Response
 from learning_hub.models import Course
 from learning_hub.serializers import CourseListSerializer, CourseDetailSerializer
 
 
-class CourseViewSet(mixins.ListModelMixin,
-                    mixins.CreateModelMixin,
+class CourseViewSet(mixins.CreateModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin,
+                    mixins.ListModelMixin,
                     viewsets.GenericViewSet):
     serializer_class = CourseListSerializer
     queryset = Course.objects.all()
@@ -14,9 +17,8 @@ class CourseViewSet(mixins.ListModelMixin,
         new_course.course_owner = self.request.user
         new_course.save()
 
-
-class CourseDetailViewSet(mixins.RetrieveModelMixin,
-                          viewsets.GenericViewSet):
-    serializer_class = CourseDetailSerializer
-    queryset = Course.objects.all()
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = CourseDetailSerializer(instance)
+        return Response(serializer.data)
 
