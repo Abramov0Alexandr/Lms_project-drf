@@ -7,6 +7,12 @@ from .serializers import PaymentsSerializer
 
 
 class PaymentsListApiView(generics.ListAPIView):
+    """
+    Контроллер для вывода информации об объектах класса Payments
+    filterset_fields: возможность фильтрации по оплаченным курсам, урокам и типу оплаты
+    ordering_fields: возможность изменить упорядочивание по дате оплаты
+    """
+
     serializer_class = PaymentsSerializer
     queryset = Payments.objects.all()
     filter_backends = [DjangoFilterBackend, OrderingFilter]
