@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
 
     'django_filters',
     'rest_framework',
+    'rest_framework_simplejwt',
     'custom_user.apps.CustomUserConfig',
     'learning_hub.apps.LearningHubConfig',
     'payments.apps.PaymentsConfig',
@@ -52,12 +54,31 @@ INSTALLED_APPS = [
 # These may be found in the rest_framework sub-package.
 # https://django-filter.readthedocs.io/en/stable/guide/rest_framework.html
 
+# Project configuration for rest_framework_simplejwt
+# https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#project-configuration
+
+# Setting the permission policy
+# https://www.django-rest-framework.org/api-guide/permissions/#setting-the-permission-policy
+
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.AllowAny',
+    ]
 }
 
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
