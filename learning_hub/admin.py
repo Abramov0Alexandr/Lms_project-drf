@@ -6,10 +6,11 @@ from .models import Course, Lesson
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('pk', 'title', 'course_owner',)
     list_editable = ('course_owner',)
+    list_display_links = ('title',)
 
 
 @admin.register(Lesson)
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('pk', 'title', 'course', 'lesson_owner',)
     list_editable = ('lesson_owner',)
-
+    list_display_links = ('title',)
