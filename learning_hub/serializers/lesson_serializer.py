@@ -31,4 +31,4 @@ class PreviewLessonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Lesson
-        fields = ('pk', 'title', 'description',)
+        fields = ('id', 'title', 'description',)
