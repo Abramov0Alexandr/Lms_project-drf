@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from learning_hub.models import Course
 from learning_hub.serializers import CourseListSerializer, CourseDetailSerializer
 from learning_hub.permissions.course_permissions import IsCourseOwner
-from learning_hub.permissions.common_permissions import IsModerator, IsNotModerator
+from learning_hub.permissions.common_permissions import IsModerator, IsNotModerator, IsSuperUser
 
 
 class CourseViewSet(mixins.CreateModelMixin,
@@ -20,10 +20,10 @@ class CourseViewSet(mixins.CreateModelMixin,
     serializer_class = CourseListSerializer
 
     permission_classes_by_action = {
-        'create': [IsNotModerator | IsAdminUser],
+        'create': [IsNotModerator | IsSuperUser],
         'update': [IsCourseOwner | IsModerator | IsAdminUser],
         'partial_update': [IsCourseOwner | IsModerator | IsAdminUser],
-        'destroy': [IsCourseOwner | IsAdminUser],
+        'destroy': [IsCourseOwner | IsSuperUser],
     }
 
     def get_queryset(self):
