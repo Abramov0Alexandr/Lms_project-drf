@@ -4,7 +4,7 @@ from rest_framework.permissions import BasePermission
 class IsModerator(BasePermission):
     """
     Данный класс определяет права доступа к контроллерам для определенной группы пользователей.
-    В данную группу входят модераторы, суперпользователи или пользователями, у которых указан флаг is_staff.
+    В данную группу входят модераторы или пользователи, у которых указан флаг is_staff.
     """
 
     def has_permission(self, request, view):
@@ -12,11 +12,7 @@ class IsModerator(BasePermission):
         :return: Метод возвращает булевые значения. В случае, если это True, то доступ предоставляется и наоборот.
         """
 
-        if request.user.is_superuser or request.user.is_staff:
-            return True
-
-        return request.user.groups.filter(
-            name="Модераторы").exists()
+        return bool(request.user.groups.filter(name="Модераторы").exists())
 
 
 class IsNotModerator(BasePermission):
@@ -31,3 +27,8 @@ class IsNotModerator(BasePermission):
         """
 
         return not (request.user.is_staff or request.user.groups.filter(name="Модераторы").exists())
+
+
+class IsSuperUser(BasePermission):
+    def has_permission(self, request, view):
+        return bool(request.user.is_superuser)
