@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from learning_hub.models import Course
 from learning_hub.serializers.lesson_serializer import PreviewLessonSerializer, LessonSerializer
+from ..validators import description_validator
 
 
 class CourseListSerializer(serializers.ModelSerializer):
@@ -17,6 +18,7 @@ class CourseListSerializer(serializers.ModelSerializer):
     #: Теперь, при создании через POST, это поле не будет требоваться к заполнению (read_only=True)
 
     course_owner = serializers.CharField(default=serializers.CurrentUserDefault())
+    description = serializers.CharField(validators=[description_validator])
 
     class Meta:
         model = Course

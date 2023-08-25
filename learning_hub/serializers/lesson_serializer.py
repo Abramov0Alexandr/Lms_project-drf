@@ -1,5 +1,6 @@
-from rest_framework import serializers, permissions
+from rest_framework import serializers
 from learning_hub.models import Lesson
+from ..validators import video_link_validator, description_validator
 
 
 class LessonSerializer(serializers.ModelSerializer):
@@ -13,6 +14,8 @@ class LessonSerializer(serializers.ModelSerializer):
 
     course_title = serializers.SerializerMethodField(read_only=True)
     lesson_owner = serializers.CharField(default=serializers.CurrentUserDefault())
+    video_link = serializers.URLField(validators=[video_link_validator])
+    description = serializers.CharField(validators=[description_validator])
 
     class Meta:
         model = Lesson
