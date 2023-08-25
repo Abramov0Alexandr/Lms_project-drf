@@ -2,6 +2,7 @@ from rest_framework import viewsets, mixins
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from learning_hub.models import Course
+from learning_hub.pagination import CustomPaginationClass
 from learning_hub.serializers import CourseListSerializer, CourseDetailSerializer
 from learning_hub.permissions.course_permissions import IsCourseOwner
 from learning_hub.permissions.common_permissions import IsModerator, IsNotModerator, IsSuperUser
@@ -18,6 +19,7 @@ class CourseViewSet(mixins.CreateModelMixin,
     """
 
     serializer_class = CourseListSerializer
+    pagination_class = CustomPaginationClass
 
     permission_classes_by_action = {
         'create': [IsNotModerator | IsSuperUser],

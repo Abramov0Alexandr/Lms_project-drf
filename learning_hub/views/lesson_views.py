@@ -1,6 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 from learning_hub.models import Lesson
+from learning_hub.pagination import CustomPaginationClass
 from learning_hub.permissions.common_permissions import IsModerator, IsNotModerator, IsSuperUser
 from learning_hub.permissions.lesson_permissions import IsLessonOwner
 from learning_hub.serializers import LessonSerializer
@@ -12,6 +13,7 @@ class LessonListApiView(generics.ListAPIView):
     """
 
     serializer_class = LessonSerializer
+    pagination_class = CustomPaginationClass
 
     def get_queryset(self):
         """

@@ -14,7 +14,7 @@ class LessonSerializer(serializers.ModelSerializer):
 
     course_title = serializers.SerializerMethodField(read_only=True)
     lesson_owner = serializers.CharField(default=serializers.CurrentUserDefault())
-    video_link = serializers.URLField(validators=[video_link_validator])
+    video_link = serializers.URLField(validators=[video_link_validator], required=False)
     description = serializers.CharField(validators=[description_validator])
 
     class Meta:
