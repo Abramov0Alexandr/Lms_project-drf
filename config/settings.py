@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'custom_user.apps.CustomUserConfig',
     'learning_hub.apps.LearningHubConfig',
     'payments.apps.PaymentsConfig',
+    'subscription.apps.SubscriptionConfig',
 ]
 
 
