@@ -55,7 +55,7 @@ class CourseViewSet(mixins.CreateModelMixin,
         """
 
         instance = self.get_object()
-        serializer = CourseDetailSerializer(instance)
+        serializer = CourseDetailSerializer(instance, context={'request': request})
         return Response(serializer.data)
 
     def get_permissions(self):
