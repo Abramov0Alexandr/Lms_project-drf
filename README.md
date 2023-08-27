@@ -13,6 +13,7 @@
    - djangorestframework-simplejwt
    - django-filters
    - psycopg2-binary
+   - coverage
 
 ## Usage
 
