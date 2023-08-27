@@ -1,0 +1,5 @@
+from .test_lesson_list import LessonListTestCase
+from .test_lesson_create import LessonCreateTestCase
+from .test_lesson_detail import LessonDetailTestCase
+from .test_lesson_update import LessonUpdateTestCase
+from .test_lesson_delete import LessonDeleteTestCase

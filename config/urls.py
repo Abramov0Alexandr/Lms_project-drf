@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('learning_hub.urls', namespace='course')),
     path('payments/', include('payments.urls', namespace='payments')),
     path('custom-user/', include('custom_user.urls', namespace='custom_user')),
+    path('course-subscription/', include('subscription.urls', namespace='subscription')),
 ]
