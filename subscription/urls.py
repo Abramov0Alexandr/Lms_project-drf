@@ -6,6 +6,6 @@ app_name = SubscriptionConfig.name
 
 
 urlpatterns = [
-    path('subscribe/<int:course_id>/', SubscribeToCourse.as_view(), name='payments'),
-    path('unsubscribe/<int:course_id>/', UnsubscribeFromCourse.as_view(), name='payments'),
+    path('subscribe/<int:course_id>/', SubscribeToCourse.as_view(), name='subscribe'),
+    path('unsubscribe/<int:course_id>/', UnsubscribeFromCourse.as_view(), name='unsubscribe'),
 ]
