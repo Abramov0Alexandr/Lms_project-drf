@@ -2,7 +2,7 @@
 name = "lms-project-drf"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Alexandr Abramov <https://github.com/Abramov0Alexandr>"]
 readme = "README.md"
 packages = [{include = "lms_project_drf"}]
 
@@ -20,6 +20,7 @@ ipython = "^8.14.0"
 django-filter = "^23.2"
 djangorestframework-simplejwt = "^5.2.2"
 coverage = "^7.3.0"
+drf-yasg = "^1.21.7"
 
 [build-system]
 requires = ["poetry-core"]

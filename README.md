@@ -14,6 +14,7 @@
    - django-filters
    - psycopg2-binary
    - coverage
+   - drf-yasg
 
 ## Usage
 
