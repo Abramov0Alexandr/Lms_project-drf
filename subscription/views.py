@@ -6,7 +6,20 @@ from subscription.models import CourseSubscription
 
 
 class SubscribeToCourse(APIView):
+    """
+    Контроллер для осуществления подписки на курс
+    """
+
     def post(self, request, course_id):
+        """
+        При вызове POST запроса с указанием id курса, создается экземпляр класса 'CourseSubscription',
+        со следующей информацией:
+        {'id': id экземпляра CourseSubscription, 'user': id пользователя, 'course': id курса, 'is_subscribed': True}
+
+        :param course_id: id курса на который осуществляется подписка
+        :return: Dictionary
+        """
+
         course = Course.objects.get(pk=course_id)
         subscription, created = CourseSubscription.objects.get_or_create(user=request.user, course=course)
         subscription.is_subscribed = True
@@ -15,7 +28,19 @@ class SubscribeToCourse(APIView):
 
 
 class UnsubscribeFromCourse(APIView):
+    """
+    Контроллер для отмены подписки на курс
+    """
+
     def post(self, request, course_id):
+        """
+        При вызове POST запроса с указанием id курса, происходит удаление экземпляр класса 'CourseSubscription',
+        связанного с моделями CustomUser и Course
+
+        :param course_id: id курса, для отмены подписки
+        :return: Dictionary
+        """
+
         course = Course.objects.get(pk=course_id)
         subscription = CourseSubscription.objects.get(user=request.user, course=course)
         subscription.delete()
