@@ -30,5 +30,10 @@ class IsNotModerator(BasePermission):
 
 
 class IsSuperUser(BasePermission):
+    """
+    Данный класс определяет права доступа для пользователей, у которых стоит флаг 'is_superuser'.
+    В отличие от IsAdminUser, 'IsSuperUser' предоставляет доступ только суперпользователям
+    """
+
     def has_permission(self, request, view):
         return bool(request.user.is_superuser)

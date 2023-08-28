@@ -19,10 +19,10 @@ class CourseListSerializer(serializers.ModelSerializer):
     lessons_info = PreviewLessonSerializer(source='course', many=True, read_only=True)
     #: Теперь, при создании через POST, это поле не будет требоваться к заполнению (read_only=True)
 
-    is_subscribed = serializers.SerializerMethodField()
-
     course_owner = serializers.CharField(default=serializers.CurrentUserDefault())
     description = serializers.CharField(validators=[description_validator])
+
+    is_subscribed = serializers.SerializerMethodField()
 
     class Meta:
         model = Course
@@ -44,6 +44,7 @@ class CourseDetailSerializer(serializers.ModelSerializer):
     lessons_count: выводит информацию о количестве уроков данного курса
     lessons_info: выводит полную информацию о связанных с курсом уроках
     course_owner: выводит email владельца курса вместо его ID
+    is_subscribed: показывает информацию о статусе подписки на курс True/False
     """
 
     lessons_count = serializers.SerializerMethodField()
