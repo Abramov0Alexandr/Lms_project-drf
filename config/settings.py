@@ -42,9 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'drf_yasg',
+    'corsheaders',
     'django_filters',
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_celery_beat',
+
     'custom_user.apps.CustomUserConfig',
     'learning_hub.apps.LearningHubConfig',
     'payments.apps.PaymentsConfig',
@@ -73,7 +76,6 @@ REST_FRAMEWORK = {
 
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-        # 'rest_framework.permissions.AllowAny',
     ]
 }
 
@@ -88,6 +90,7 @@ SIMPLE_JWT = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -147,6 +150,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# CSRF Integration
+# https://pypi.org/project/django-cors-headers/#description (CSRF Integration)
+
+CORS_ALLOWED_ORIGINS = [
+    "https://read-only.example.com",
+    "https://read-and-write.example.com",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://read-and-write.example.com",
+]
+
 
 # E-mail smpt configuration
 # https://docs.djangoproject.com/en/4.2/ref/settings/#std-setting
@@ -189,3 +204,30 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/4.2/topics/auth/customizing/
 
 AUTH_USER_MODEL = 'custom_user.CustomUser'
+
+
+# https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html#id1
+# Using Celery with Django
+
+# Часовой пояс для работы Celery
+CELERY_TIMEZONE = os.getenv('TIME_ZONE_SETTINGS')
+
+# Флаг отслеживания выполнения задач
+CELERY_TASK_TRACK_STARTED = True
+
+# Максимальное время на выполнение задачи
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+
+# URL-адрес брокера сообщений
+CELERY_BROKER_URL = 'redis://localhost:6379'  # Например, Redis, который по умолчанию работает на порту 6379
+
+# URL-адрес брокера результатов, также Redis
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
+CELERY_BEAT_SCHEDULE = {
+    "check_user_activity": {
+        "task": "custom_user.tasks.check_user_activity",
+        "schedule": timedelta(days=1),
+    },
+}
