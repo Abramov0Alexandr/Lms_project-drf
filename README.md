@@ -16,6 +16,10 @@
    - coverage
    - drf-yasg
    - django-cors-headers
+   - eventlet 
+   - celery
+   - redis
+   - django-celery-beat
 
 ## Usage
 
