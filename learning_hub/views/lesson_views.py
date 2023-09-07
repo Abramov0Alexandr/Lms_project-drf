@@ -5,6 +5,7 @@ from learning_hub.pagination import CustomPaginationClass
 from learning_hub.permissions.common_permissions import IsModerator, IsNotModerator, IsSuperUser
 from learning_hub.permissions.lesson_permissions import IsLessonOwner
 from learning_hub.serializers import LessonSerializer
+from subscription.task import send_course_update_notification
 
 
 class LessonListApiView(generics.ListAPIView):
@@ -45,6 +46,11 @@ class LessonCreateApiView(generics.CreateAPIView):
 
         new_lesson = serializer.save(lesson_owner=self.request.user)
         new_lesson.lesson_owner = self.request.user
+
+        if new_lesson:
+            course_id = new_lesson.course_id
+            send_course_update_notification.delay(course_id)
+
         new_lesson.save()
 
 
